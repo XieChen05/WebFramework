@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料管理系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="main-page">
+    <!-- 顶部导航栏 -->
+    <header class="top-nav">
+        <div class="nav-left">
+            <h2>资料管理系统</h2>
+        </div>
+        <div class="nav-right">
+            <div class="user-info">
+                <span class="user-role" id="userRole">管理员</span>
+                <span class="user-name" id="userName">Admin</span>
+                <button class="btn btn-logout" onclick="logout()">退出登录</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- 侧边栏菜单 -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav-menu">
+                    <li class="nav-item active" data-page="dashboard">
+                        <a href="#dashboard">
+                            <span class="icon">📊</span>
+                            <span class="text">仪表盘</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-page="user-management">
+                        <a href="#user-management">
+                            <span class="icon">👥</span>
+                            <span class="text">用户管理</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-page="product-maintenance">
+                        <a href="#product-maintenance">
+                            <span class="icon">📦</span>
+                            <span class="text">商品资料维护</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-page="selection-material">
+                        <a href="#selection-material">
+                            <span class="icon">🛍️</span>
+                            <span class="text">选品资料</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-page="basic-settings">
+                        <a href="#basic-settings">
+                            <span class="icon">⚙️</span>
+                            <span class="text">基础设置</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="content">
+            <!-- 仪表盘 -->
+            <div id="dashboard" class="page-content active">
+                <div class="page-header">
+                    <h1>仪表盘</h1>
+                    <p>欢迎使用资料管理系统</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <h3>用户总数</h3>
+                            <p class="stat-number">128</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-info">
+                            <h3>商品总数</h3>
+                            <p class="stat-number">1,245</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏷️</div>
+                        <div class="stat-info">
+                            <h3>条码总数</h3>
+                            <p class="stat-number">8,562</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-info">
+                            <h3>今日订单</h3>
+                            <p class="stat-number">45</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 用户管理 -->
+            <div id="user-management" class="page-content">
+                <div class="page-header">
+                    <h1>用户管理</h1>
+                    <button class="btn btn-primary" onclick="openAddUserModal()">
+                        <span>+ 添加用户</span>
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>用户ID</th>
+                                <th>用户名</th>
+                                <th>用户类型</th>
+                                <th>邮箱</th>
+                                <th>状态</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>001</td>
+                                <td>张三</td>
+                                <td><span class="badge badge-admin">管理员</span></td>
+                                <td>zhangsan@example.com</td>
+                                <td><span class="status-active">启用</span></td>
+                                <td>2025-01-01</td>
+                                <td>
+                                    <button class="btn-icon" title="编辑">✏️</button>
+                                    <button class="btn-icon" title="删除">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>002</td>
+                                <td>李四</td>
+                                <td><span class="badge badge-supplier">供应商</span></td>
+                                <td>lisi@example.com</td>
+                                <td><span class="status-active">启用</span></td>
+                                <td>2025-01-15</td>
+                                <td>
+                                    <button class="btn-icon" title="编辑">✏️</button>
+                                    <button class="btn-icon" title="删除">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>王五</td>
+                                <td><span class="badge badge-distributor">分销商</span></td>
+                                <td>wangwu@example.com</td>
+                                <td><span class="status-active">启用</span></td>
+                                <td>2025-02-01</td>
+                                <td>
+                                    <button class="btn-icon" title="编辑">✏️</button>
+                                    <button class="btn-icon" title="删除">🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 商品资料维护 -->
+            <div id="product-maintenance" class="page-content">
+                <div class="page-header">
+                    <h1>商品资料维护</h1>
+                    <button class="btn btn-primary" onclick="openAddProductModal()">
+                        <span>+ 添加商品</span>
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>批量生成条码</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="barcodeGeneratorForm" class="barcode-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>款号</label>
+                                    <input type="text" placeholder="例如：0001" id="styleNo">
+                                </div>
+                                <div class="form-group">
+                                    <label>颜色（逗号分隔）</label>
+                                    <input type="text" placeholder="例如：黑色,白色,红色" id="colors">
+                                </div>
+                                <div class="form-group">
+                                    <label>尺码（逗号分隔）</label>
+                                    <input type="text" placeholder="例如：M,L,XL,XXL" id="sizes">
+                                </div>
+                                <div class="form-group" id="stockInputGroup">
+                                    <label>库存数量</label>
+                                    <input type="number" placeholder="每个SKU的库存" id="stockQty">
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-success" onclick="generateBarcodes()">生成条码</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <h3>生成的条码列表</h3>
+                        <button class="btn btn-secondary" onclick="printBarcodes()">打印条码</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="data-table" id="barcodeTable">
+                                <thead>
+                                    <tr>
+                                        <th>条码编号</th>
+                                        <th>款号</th>
+                                        <th>颜色</th>
+                                        <th>尺码</th>
+                                        <th>库存数量</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="barcodeTableBody">
+                                    <tr>
+                                        <td colspan="6" style="text-align: center; color: #999;">暂无数据，请生成条码</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 选品资料 -->
+            <div id="selection-material" class="page-content">
+                <div class="page-header">
+                    <h1>选品资料</h1>
+                    <button class="btn btn-primary" id="publishBtn" onclick="publishMaterial()">
+                        <span>发布资料</span>
+                    </button>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label>供应商筛选：</label>
+                        <select id="supplierFilter">
+                            <option value="">全部供应商</option>
+                            <option value="supplier1">供应商A</option>
+                            <option value="supplier2">供应商B</option>
+                            <option value="supplier3">供应商C</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <input type="text" placeholder="搜索商品..." id="searchProduct">
+                        <button class="btn btn-secondary">搜索</button>
+                    </div>
+                </div>
+
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="placeholder-image">📦</div>
+                        </div>
+                        <div class="product-info">
+                            <h4>商品名称示例</h4>
+                            <p class="product-code">款号：0001</p>
+                            <p class="product-supplier">供应商：供应商A</p>
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary" onclick="viewProductDetail()">查看详情</button>
+                                <button class="btn btn-sm btn-success" id="orderBtn" onclick="generateBarcode()">生成条码</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="placeholder-image">📦</div>
+                        </div>
+                        <div class="product-info">
+                            <h4>商品名称示例2</h4>
+                            <p class="product-code">款号：0002</p>
+                            <p class="product-supplier">供应商：供应商B</p>
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary" onclick="viewProductDetail()">查看详情</button>
+                                <button class="btn btn-sm btn-success" onclick="generateBarcode()">生成条码</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="placeholder-image">📦</div>
+                        </div>
+                        <div class="product-info">
+                            <h4>商品名称示例3</h4>
+                            <p class="product-code">款号：0003</p>
+                            <p class="product-supplier">供应商：供应商C</p>
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary" onclick="viewProductDetail()">查看详情</button>
+                                <button class="btn btn-sm btn-success" onclick="generateBarcode()">生成条码</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 基础设置 -->
+            <div id="basic-settings" class="page-content">
+                <div class="page-header">
+                    <h1>基础设置</h1>
+                </div>
+
+                <div class="settings-container">
+                    <div class="settings-tabs">
+                        <button class="tab-btn active" onclick="showSettingTab('fixed-settings')">固定设置</button>
+                        <button class="tab-btn" onclick="showSettingTab('custom-settings')">自定义设置</button>
+                        <button class="tab-btn" onclick="showSettingTab('field-maintenance')">字段维护</button>
+                        <button class="tab-btn" onclick="showSettingTab('function-maintenance')">功能维护</button>
+                    </div>
+
+                    <div class="settings-content">
+                        <!-- 固定设置 -->
+                        <div id="fixed-settings" class="setting-panel active">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>系统基础设置</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form class="settings-form">
+                                        <div class="form-group">
+                                            <label>系统名称</label>
+                                            <input type="text" value="资料管理系统">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>公司名称</label>
+                                            <input type="text" value="天一科技有限公司">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>联系电话</label>
+                                            <input type="text" value="400-123-4567">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>系统邮箱</label>
+                                            <input type="email" value="admin@example.com">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">保存设置</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 自定义设置 -->
+                        <div id="custom-settings" class="setting-panel">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>自定义字段设置</h3>
+                                    <button class="btn btn-primary btn-sm" onclick="addCustomField()">+ 添加字段</button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-container">
+                                        <table class="data-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>字段名称</th>
+                                                    <th>字段类型</th>
+                                                    <th>是否必填</th>
+                                                    <th>默认值</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>自定义字段1</td>
+                                                    <td>文本</td>
+                                                    <td>否</td>
+                                                    <td>-</td>
+                                                    <td>
+                                                        <button class="btn-icon">✏️</button>
+                                                        <button class="btn-icon">🗑️</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 字段维护 -->
+                        <div id="field-maintenance" class="setting-panel">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>数据字段维护</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-container">
+                                        <table class="data-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>字段编码</th>
+                                                    <th>字段名称</th>
+                                                    <th>所属模块</th>
+                                                    <th>数据类型</th>
+                                                    <th>状态</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>FIELD_001</td>
+                                                    <td>款号</td>
+                                                    <td>商品管理</td>
+                                                    <td>VARCHAR(50)</td>
+                                                    <td><span class="status-active">启用</span></td>
+                                                    <td>
+                                                        <button class="btn-icon">✏️</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>FIELD_002</td>
+                                                    <td>颜色</td>
+                                                    <td>商品管理</td>
+                                                    <td>VARCHAR(20)</td>
+                                                    <td><span class="status-active">启用</span></td>
+                                                    <td>
+                                                        <button class="btn-icon">✏️</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>FIELD_003</td>
+                                                    <td>尺码</td>
+                                                    <td>商品管理</td>
+                                                    <td>VARCHAR(10)</td>
+                                                    <td><span class="status-active">启用</span></td>
+                                                    <td>
+                                                        <button class="btn-icon">✏️</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 功能维护 -->
+                        <div id="function-maintenance" class="setting-panel">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>功能权限维护</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="permission-matrix">
+                                        <table class="data-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>功能模块</th>
+                                                    <th>管理员</th>
+                                                    <th>供应商</th>
+                                                    <th>分销商</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>用户管理</td>
+                                                    <td><input type="checkbox" checked disabled></td>
+                                                    <td><input type="checkbox"></td>
+                                                    <td><input type="checkbox"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>商品资料维护 - 查看</td>
+                                                    <td><input type="checkbox" checked disabled></td>
+                                                    <td><input type="checkbox" checked></td>
+                                                    <td><input type="checkbox" checked></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>商品资料维护 - 编辑</td>
+                                                    <td><input type="checkbox" checked disabled></td>
+                                                    <td><input type="checkbox" checked></td>
+                                                    <td><input type="checkbox"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>商品资料维护 - 库存管理</td>
+                                                    <td><input type="checkbox" checked disabled></td>
+                                                    <td><input type="checkbox" checked></td>
+                                                    <td><input type="checkbox"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>选品资料 - 发布资料</td>
+                                                    <td><input type="checkbox" checked disabled></td>
+                                                    <td><input type="checkbox" checked></td>
+                                                    <td><input type="checkbox"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>选品资料 - 生成条码</td>
+                                                    <td><input type="checkbox" checked disabled></td>
+                                                    <td><input type="checkbox"></td>
+                                                    <td><input type="checkbox" checked></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>选品资料 - 下单</td>
+                                                    <td><input type="checkbox" checked disabled></td>
+                                                    <td><input type="checkbox"></td>
+                                                    <td><input type="checkbox" checked></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>基础设置</td>
+                                                    <td><input type="checkbox" checked disabled></td>
+                                                    <td><input type="checkbox"></td>
+                                                    <td><input type="checkbox"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button class="btn btn-primary" style="margin-top: 20px;">保存权限设置</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
